@@ -1,10 +1,15 @@
 import config from "@/config"
-import { Request, Response } from "express"
+import { NextFunction, Request, Response } from "express"
 
 import AppError from "./AppError"
 import logger from "./logger"
 
-const errorHandler = (err: AppError, _req: Request, res: Response) => {
+const errorHandler = (
+  err: AppError,
+  _req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   logger.error(err)
   res.status(500).json({
     error:
@@ -14,6 +19,8 @@ const errorHandler = (err: AppError, _req: Request, res: Response) => {
           ? err.message
           : "Something went wrong. Please try again.",
   })
+
+  next()
 }
 
 export default errorHandler

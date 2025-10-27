@@ -1,3 +1,5 @@
+import { Router } from "express"
+
 import {
   deleteCountry,
   getCountries,
@@ -5,7 +7,6 @@ import {
   getCountry,
   refreshCountries,
 } from "@/controllers/countries.controller"
-import { Router } from "express"
 
 const router = Router()
 

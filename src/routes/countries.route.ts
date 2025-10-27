@@ -1,3 +1,5 @@
+import { Router } from "express"
+
 import {
   deleteCountry,
   getCountries,
@@ -5,13 +7,12 @@ import {
   getCountry,
   refreshCountries,
 } from "@/controllers/countries.controller"
-import { Router } from "express"
 
 const router = Router()
 
 router.route("/").get(getCountries)
 router.route("/image").get(getCountriesImage)
-router.post("/refresh", refreshCountries)
+router.route("/refresh").post(refreshCountries)
 
 router.route("/:name").get(getCountry).delete(deleteCountry)
 

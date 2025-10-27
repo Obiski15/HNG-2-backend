@@ -11,7 +11,7 @@ const errorHandler = (
   next: NextFunction
 ) => {
   logger.error(err)
-  res.status(500).json({
+  res.status(err.statusCode ?? 500).json({
     error:
       config.nodeEnv === "development"
         ? err.message
